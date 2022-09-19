@@ -34,6 +34,12 @@ Profile.init(
 );
 
 class Contract extends Sequelize.Model {}
+
+/*
+* Changed - Extract enum from model to be able to user in app.js
+*/
+Contract.statusTypes = Sequelize.ENUM('new','in_progress','terminated');
+
 Contract.init(
   {
     terms: {
@@ -41,7 +47,7 @@ Contract.init(
       allowNull: false
     },
     status:{
-      type: Sequelize.ENUM('new','in_progress','terminated')
+      type: Contract.statusTypes
     }
   },
   {
