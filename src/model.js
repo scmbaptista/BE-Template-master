@@ -5,6 +5,16 @@ const sequelize = new Sequelize({
   storage: './database.sqlite3'
 });
 
+/*
+* Changed - Extract enum from model to be able to user in app.js
+*/
+const typesStatus = {
+  new: 'new',
+  in_progress: 'in_progress',
+  terminated: 'terminated'
+}
+
+
 class Profile extends Sequelize.Model {}
 Profile.init(
   {
@@ -34,12 +44,6 @@ Profile.init(
 );
 
 class Contract extends Sequelize.Model {}
-
-/*
-* Changed - Extract enum from model to be able to user in app.js
-*/
-Contract.statusTypes = Sequelize.ENUM('new','in_progress','terminated');
-
 Contract.init(
   {
     terms: {
@@ -47,7 +51,7 @@ Contract.init(
       allowNull: false
     },
     status:{
-      type: Contract.statusTypes
+      type: Sequelize.ENUM(typesStatus.new, typesStatus.in_progress, typesStatus.terminated)
     }
   },
   {
@@ -88,9 +92,12 @@ Contract.belongsTo(Profile, {as: 'Client'})
 Contract.hasMany(Job)
 Job.belongsTo(Contract)
 
+
+
 module.exports = {
   sequelize,
   Profile,
   Contract,
-  Job
+  Job,
+  typesStatus
 };
