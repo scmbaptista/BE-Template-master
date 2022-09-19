@@ -8,11 +8,16 @@
  - New file Service to be able to read better code and to use design pattern
  - Api's will used class ContractService and JobsService
  - Added error handler with try catch
+ - With more time the goal was to do unit tests for all cases 
+
 
 ## TO IMPROVE OR DO DIFFERENT:
+ - Use more design pattern
  - Create a folder routes and create there all files reelected with API/Routes
  - Create a folder and file to be responsible for error handling
  - Changed from node to typescript and from express to nestjs. In this way, you can have Types and a structured route structure.
+ - Create a folder and file to be responsible for repositories, to have all accesses to the database and queries.
+ - Unit tests (test controller, methods, errors, ....)
 
 ## DOUBTS:
  - I don't know if I understood well I applied what was requested in terms of calculations and updates 
