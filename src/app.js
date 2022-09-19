@@ -8,14 +8,27 @@ app.use(bodyParser.json());
 app.set('sequelize', sequelize);
 app.set('models', sequelize.models);
 
+/**
+ * NOTES:
+ * 1 - New file Service to be able to read better code and to use design pattern
+ * 2 - Api's will used class ContractService and JobsService
+ * 3 - Added error handler with try catch
+ * 
+ * 
+ * TO IMPROVE OR DO DIFFERENT:
+ * 1 - Create a folder routes and create there all files reelected with API/Routes
+ * 2 - Create a folder and file to be responsible for error handling
+ * 3 - Changed from node to typescript and from express to nestjs. In this way, you can have Types and a structured route structure.
+ * 
+ * DOUBTS:
+ * 1 - I don't know if I understood well I applied what was requested in terms of calculations and updates (ex: POST API'S)
+ */
+
 
 /**
 * Requested - Returns a list of contracts belonging to a user (client or contractor), the list should only contain non terminated contracts.
 * Created:
-* 1 - New file Service to be able to read better code and to use design pattern
-* 2 - Api call class ContractService method findAll
-* 3 - Added error handler with try catch
-* 
+* * 
 * @returns list of contracts or error
 */
 app.get('/contracts', async(req, res) =>{    
@@ -31,6 +44,9 @@ app.get('/contracts', async(req, res) =>{
 
 /**
  * Requested - This API is broken 😵! it should return the contract only if it belongs to the profile calling. better fix that!
+ * Changed: 
+ * 1 - Change in API address to also send profile_id
+ * 
  * 
  * FIX ME!
  * @returns contract by id

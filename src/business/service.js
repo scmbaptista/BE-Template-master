@@ -199,6 +199,15 @@ class JobsService{
         }
         return result;
     }
+
+    /**
+     * 
+     * * DOUBTS:
+     * 1 - I don't know if I understood well I applied what was requested in terms of calculations and updates (ex: POST API'S)} userId 
+     * 
+     * @param {*} jobId 
+     * @returns 
+     */
     async handlerPay(jobId){
         const job = await this.findById(jobId);
 
@@ -240,14 +249,32 @@ class JobsService{
         ]);
         
     }
+    
+    /**
+     * 
+     * DOUBTS:
+     * 1 - I don't know if I understood well I applied what was requested in terms of calculations and updates (ex: POST API'S)} userId 
+     * 
+     * @param {*} amount 
+     * @returns 
+     */
     async handlerDeposits(userId, amount){
         const jobs = await this.findByUserId(userId);
-        for await(const job of jobs){
-            if((job.price*0.25) >= amount){
-                job.price = job.price + amount;
-                await this.deposit(job.id, job.price);
+        if(jobs.length > 1){
+            for await(const job of jobs){
+                if((job.price*0.25) >= amount){
+                    job.price = job.price + amount;
+                    await this.deposit(job.id, job.price);
+                }
+            }
+        }else{
+            const o = jobs[0].price;
+            if((jobs[0].price*0.25) >= amount){
+                jobs[0].price = jobs[0].price + amount;
+                await this.deposit(jobs[0].id, jobs[0].price);
             }
         }
+        
         return jobs;
     }
     async deposit(jobId, amount){
