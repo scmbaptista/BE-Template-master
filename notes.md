@@ -9,6 +9,7 @@
  - Api's will used class ContractService and JobsService
  - Added error handler with try catch
  - With more time the goal was to do unit tests for all cases 
+ - test:cov - Exist a new command npm to run all test coverage of jest 
 
 
 ## TO IMPROVE OR DO DIFFERENT:

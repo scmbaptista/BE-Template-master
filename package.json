@@ -11,8 +11,7 @@
   "scripts": {
     "start": "nodemon ./src/server.js",
     "seed": "node ./scripts/seedDb.js",
-    "test:cov": "jest --coverage",
-    "test:ci": "jest --reporters=jest-junit --testResultsProcessor=\"jest-junit\" --collectCoverage"
+    "test:cov": "jest --coverage"
   },
   "devDependencies": {
     "concurrently": "4.1.0",
